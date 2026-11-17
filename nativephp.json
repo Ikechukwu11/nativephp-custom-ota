@@ -1,0 +1,87 @@
+{
+    "name": "ikechukwu11/nativephp-custom-ota",
+    "description": "Self-hosted, Bifrost-independent over-the-air (OTA) PHP payload updates for NativePHP Mobile",
+    "namespace": "Ota",
+    "keywords": [
+        "ota",
+        "updates",
+        "self-hosted"
+    ],
+    "category": "utilities",
+    "license": "MIT",
+    "pricing": {
+        "type": "free"
+    },
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "bridge_functions": [
+        {
+            "name": "Ota.Check",
+            "android": "com.nativephp.plugins.custom_ota.OtaFunctions.Check",
+            "ios": "OtaFunctions.Check",
+            "description": "Check an HTTPS manifest.json or custom API endpoint for a newer signed OTA release"
+        },
+        {
+            "name": "Ota.Download",
+            "android": "com.nativephp.plugins.custom_ota.OtaFunctions.Download",
+            "ios": "OtaFunctions.Download",
+            "description": "Download an OTA zip, verify size, SHA-256, and Ed25519 signature, and stage to updates/pending.zip"
+        },
+        {
+            "name": "Ota.Apply",
+            "android": "com.nativephp.plugins.custom_ota.OtaFunctions.Apply",
+            "ios": "OtaFunctions.Apply",
+            "description": "Queue the staged pending zip for NativePHP core to extract on the next boot"
+        },
+        {
+            "name": "Ota.Rollback",
+            "android": "com.nativephp.plugins.custom_ota.OtaFunctions.Rollback",
+            "ios": "OtaFunctions.Rollback",
+            "description": "Restore the previous pending zip as updates/pending.zip for next-boot apply"
+        },
+        {
+            "name": "Ota.GetStatus",
+            "android": "com.nativephp.plugins.custom_ota.OtaFunctions.GetStatus",
+            "ios": "OtaFunctions.GetStatus",
+            "description": "Return current version, pending status, and rollback availability"
+        },
+        {
+            "name": "Ota.Prompt",
+            "android": "com.nativephp.plugins.custom_ota.OtaFunctions.Prompt",
+            "ios": "OtaFunctions.Prompt",
+            "description": "Check in the background and, when a release is waiting, prompt Later / Update"
+        }
+    ],
+    "android": {
+        "min_version": 26,
+        "permissions": [
+            "android.permission.INTERNET",
+            "android.permission.ACCESS_NETWORK_STATE"
+        ],
+        "dependencies": {
+            "implementation": []
+        }
+    },
+    "ios": {
+        "min_version": "18.2",
+        "dependencies": {
+            "swift_packages": [],
+            "pods": []
+        }
+    },
+    "secrets": [],
+    "events": [
+        "Ikechukwu11\\NativephpCustomOta\\Events\\UpdateAvailable",
+        "Ikechukwu11\\NativephpCustomOta\\Events\\UpdateDownloaded",
+        "Ikechukwu11\\NativephpCustomOta\\Events\\UpdateApplied",
+        "Ikechukwu11\\NativephpCustomOta\\Events\\UpdateFailed",
+        "Ikechukwu11\\NativephpCustomOta\\Events\\RolledBack",
+        "Ikechukwu11\\NativephpCustomOta\\Events\\UpdatePromptAnswered"
+    ],
+    "hooks": {
+        "copy_assets": "nativephp:custom-ota:copy-assets"
+    }
+}
+

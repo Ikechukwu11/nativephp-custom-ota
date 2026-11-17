@@ -1,0 +1,62 @@
+{
+    "name": "ikechukwu11/nativephp-custom-ota",
+    "description": "Self-hosted, Bifrost-independent over-the-air (OTA) PHP payload updates for NativePHP Mobile",
+    "type": "nativephp-plugin",
+    "license": "MIT",
+    "keywords": [
+        "nativephp",
+        "mobile",
+        "ota",
+        "updates",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "ikechukwu11"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-sodium": "*",
+        "ext-zip": "*",
+        "nativephp/mobile": "^4.6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ikechukwu11\\NativephpCustomOta\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ikechukwu11\\NativephpCustomOta\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ikechukwu11\\NativephpCustomOta\\OtaServiceProvider"
+            ],
+            "aliases": {
+                "Ota": "Ikechukwu11\\NativephpCustomOta\\Facades\\Ota"
+            }
+        },
+        "nativephp": {
+            "manifest": "nativephp.json"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^2.7|^3.0|^4.0"
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+
